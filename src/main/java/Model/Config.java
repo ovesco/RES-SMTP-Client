@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class Config {
 
+    private final static String BASE_EHLO       = "smtp_res.com";
+    private final static EmailAddress BASE_FROM = new EmailAddress("res@res.com");
+
     private ArrayList<EmailAddress> victims     = new ArrayList<EmailAddress>();
     private ArrayList<EmailAddress> senders     = new ArrayList<EmailAddress>();
     private ArrayList<EmailContent> contents    = new ArrayList<EmailContent>();
@@ -12,6 +15,14 @@ public class Config {
     private String ehlo;
     private EmailAddress baseFrom;
     private boolean mock;
+
+    public Config() {
+
+        ehlo        = BASE_EHLO;
+        baseFrom    = BASE_FROM;
+        groups      = 1;
+        mock        = true;
+    }
 
     public EmailAddress getBaseFrom() {
         return baseFrom;

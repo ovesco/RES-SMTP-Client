@@ -1,8 +1,8 @@
 
+import Data.CampaignMaker;
 import IO.ConfigReader;
+import IO.MailSender;
 import Model.Config;
-import Model.EmailAddress;
-import Model.EmailContent;
 
 import java.util.Scanner;
 
@@ -15,19 +15,8 @@ public class RES_SMTP {
         String filename             = reader.nextLine();
         reader.close();
 
-        Config config               = new ConfigReader(filename).getConfig();
-
-        for(EmailAddress address : config.getVictims())
-            System.out.println("[victim] " + address.getEmail());
-
-        for(EmailAddress address : config.getSenders())
-            System.out.println("[sender] " + address.getEmail());
-
-        for(EmailContent content : config.getContents())
-            System.out.println("[content] subject:" + content.getSubject() + ", content: " + content.getContent());
-
-        System.out.println("EHLO: " + config.getEhlo());
-        System.out.println("Groups: " + config.getGroups());
-        System.out.println("BaseFrom: " + config.getBaseFrom());
+        Config config       = new ConfigReader(filename).getConfig();
+        CampaignMaker maker = new CampaignMaker(config);
+        MailSender sender   = new MailSender(config.getEhlo(), config.getBaseFrom());
     }
 }

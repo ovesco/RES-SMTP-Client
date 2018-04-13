@@ -1,6 +1,7 @@
 package IO;
 
 import DNS.Helper;
+import Model.Config;
 import Model.EmailAddress;
 
 public class MailSender {
@@ -8,14 +9,11 @@ public class MailSender {
 
     private Helper helper = new Helper();
 
-    private String ehlo;
+    private Config config;
 
-    private EmailAddress baseFrom;
+    public MailSender(Config config) {
 
-    public MailSender(String ehlo, EmailAddress baseFrom) {
-
-        this.ehlo       = ehlo;
-        this.baseFrom   = baseFrom;
+        this.config = config;
     }
 
     public void connect(String server) {
