@@ -1,6 +1,6 @@
 package IO;
 
-import data.EmailAddress;
+import Model.EmailAddress;
 
 import java.io.*;
 import java.net.Socket;
@@ -72,7 +72,7 @@ public class SMTPClient {
             read();
 
             //Notify server that we send message
-            logger.info("starting sending data");
+            logger.info("starting sending Model");
             write(DATA);
             read(); //He says ok yo, go ahead
 

@@ -1,8 +1,12 @@
-package data;
+package Model;
 
 public class EmailAddress {
 
     private String email;
+
+    public EmailAddress() {
+
+    }
 
     public EmailAddress(String email) {
 
@@ -20,6 +24,11 @@ public class EmailAddress {
     public String getEmail() {
 
         return email;
+    }
+
+    public void setEmail(String email) {
+
+        this.email = email;
     }
 
     public String getServer() {

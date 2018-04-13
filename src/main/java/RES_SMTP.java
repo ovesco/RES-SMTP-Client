@@ -1,25 +1,33 @@
-import IO.SMTPClient;
-import data.EmailAddress;
+
+import IO.ConfigReader;
+import Model.Config;
+import Model.EmailAddress;
+import Model.EmailContent;
+
+import java.util.Scanner;
 
 public class RES_SMTP {
 
     public static void main(String ...args) {
-        /*
-        Helper helper = new Helper();
-        String record = helper.getMXRecord("localhost");
-        System.out.println(record);
-        System.out.println(helper.cleanMXRecord(record));
-        */
 
+        System.out.println("Indiquez le fichier de configuration");
+        Scanner reader              = new Scanner(System.in);
+        String filename             = reader.nextLine();
+        reader.close();
 
-        SMTPClient client = new SMTPClient("localhost", 8183);
-        client.SMTPSendMail(new EmailAddress("guillaume.hochet@gmail.com"), new EmailAddress("yolo@swag.com"), "Eh salut!", "Que de swag");
-        //*/
-        /*
-                EmailAddress address = new EmailAddress("guillaume.hochet@gmail.com");
-        System.out.println(address);
-        System.out.println(address.getServer());
+        Config config               = new ConfigReader(filename).getConfig();
 
-         */
+        for(EmailAddress address : config.getVictims())
+            System.out.println("[victim] " + address.getEmail());
+
+        for(EmailAddress address : config.getSenders())
+            System.out.println("[sender] " + address.getEmail());
+
+        for(EmailContent content : config.getContents())
+            System.out.println("[content] subject:" + content.getSubject() + ", content: " + content.getContent());
+
+        System.out.println("EHLO: " + config.getEhlo());
+        System.out.println("Groups: " + config.getGroups());
+        System.out.println("BaseFrom: " + config.getBaseFrom());
     }
 }

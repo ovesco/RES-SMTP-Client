@@ -1,9 +1,7 @@
 package IO;
 
 import DNS.Helper;
-import data.EmailAddress;
-
-import java.io.IOException;
+import Model.EmailAddress;
 
 public class MailSender {
 

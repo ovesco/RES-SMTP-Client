@@ -1,0 +1,40 @@
+{
+  "victims": [
+    "laure@jnouney.swag",
+    "marie@jnouney.swag",
+    "ben@jnouney.swag",
+    "gradur@victimisey.yo",
+    "booba@victimisey.yo",
+    "swagman@victimisey.yo",
+    "max@lamenace.com",
+    "random@yo.com",
+    "britanny@yo.com",
+    "molusque@yo.com"
+  ],
+
+  "senders": [
+    "jte@victimise.com",
+    "jc@vandamme.whey",
+    "damn@son.org"
+  ],
+
+  "contents": [
+    {
+      "subject": "T'es une victime",
+      "content": "Yo %s, t'as été victimisey par l'homme le plus styley"
+    },
+    {
+      "subject": "J'ai des thunes",
+      "content": "Bonsoir %s, je suis un prince nigérien et je vous lègue toute ma fortune parce que votre adresse est %s"
+    },
+    {
+      "subject": "Hakuna matata",
+      "content": "C'est l'histoiiire de la viiiiiiiiiiiiiiiiiie, le cycle ééééterneeeeeeeeeeeeeeeeeeeeel"
+    }
+  ],
+
+  "groups": 3,
+  "ehlo": "swag.com",
+  "baseFrom": "yolo@swag.com",
+  "mock": true
+}
