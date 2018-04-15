@@ -1,6 +1,5 @@
-package IO;
+package Data;
 
-import Data.JsonObjectMapper;
 import Model.Config;
 
 import java.io.BufferedReader;

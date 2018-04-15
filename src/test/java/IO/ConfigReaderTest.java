@@ -1,5 +1,6 @@
 package IO;
 
+import Data.ConfigReader;
 import Model.Config;
 import org.junit.Test;
 import static org.junit.Assert.*;

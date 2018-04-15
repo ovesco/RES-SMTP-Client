@@ -1,6 +1,6 @@
 
 import Data.CampaignMaker;
-import IO.ConfigReader;
+import Data.ConfigReader;
 import IO.MailSender;
 import Model.Campaign;
 import Model.Config;

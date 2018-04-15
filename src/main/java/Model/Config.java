@@ -5,32 +5,14 @@ import java.util.ArrayList;
 public class Config {
 
     private final static String BASE_EHLO       = "smtp_res.com";
-    private final static EmailAddress BASE_FROM = new EmailAddress("res@res.com");
 
     private ArrayList<EmailAddress> victims     = new ArrayList<EmailAddress>();
     private ArrayList<EmailAddress> senders     = new ArrayList<EmailAddress>();
     private ArrayList<EmailContent> contents    = new ArrayList<EmailContent>();
 
-    private Integer groups;
-    private String ehlo;
-    private EmailAddress baseFrom;
-    private boolean mock;
-
-    public Config() {
-
-        ehlo        = BASE_EHLO;
-        baseFrom    = BASE_FROM;
-        groups      = 1;
-        mock        = true;
-    }
-
-    public EmailAddress getBaseFrom() {
-        return baseFrom;
-    }
-
-    public void setBaseFrom(EmailAddress baseFrom) {
-        this.baseFrom = baseFrom;
-    }
+    private Integer groups          = 1;
+    private String ehlo             = BASE_EHLO;
+    private MockServer mockServer   = null;
 
     public String getEhlo() {
         return ehlo;
@@ -73,10 +55,17 @@ public class Config {
     }
 
     public boolean isMock() {
-        return mock;
+
+        return mockServer != null;
     }
 
-    public void setMock(boolean mock) {
-        this.mock = mock;
+    public MockServer getMockServer() {
+
+        return mockServer;
+    }
+
+    public void setMockServer(MockServer mockServer) {
+
+        this.mockServer = mockServer;
     }
 }
