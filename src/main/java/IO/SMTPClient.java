@@ -93,13 +93,13 @@ public class SMTPClient {
 
             write("QUIT");
             connection.close();
+            return true;
 
         } catch (Exception e) {
 
             logger.severe(e.getMessage());
+            return false;
         }
-
-        return true;
     }
 
     private void write(String s) throws UnsupportedEncodingException {

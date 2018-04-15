@@ -35,4 +35,9 @@ public class EmailAddress {
 
         return email.split("@")[1];
     }
+
+    public String getAdressPrefix() {
+
+        return email.split("@")[0];
+    }
 }
