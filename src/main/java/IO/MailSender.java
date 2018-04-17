@@ -31,7 +31,9 @@ public class MailSender {
 
     public void sendMail(EmailAddress from, List<EmailAddress> to, String subject, String content) {
 
-        SMTPClient client   = config.isMock() ? new SMTPClient(config.getMockServer().getServer(), config.getMockServer().getPort()) : connect(from.getServer());
+        SMTPClient client   = config.isMock()
+                ? new SMTPClient(config.getMockServer().getServer(), config.getMockServer().getPort())
+                : connect(from.getServer());
 
         if(!client.SMTPSendMail(from, to, subject, content, config.getEhlo()))
             logger.severe("Couldn't send mail from " + from.getEmail() + " with subject " + subject);
@@ -64,7 +66,7 @@ public class MailSender {
                 in          = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 out         = new PrintWriter(new OutputStreamWriter(connection.getOutputStream()), true);
 
-                logger.info("Connected to: " + in.readLine());
+                System.out.println("Connected to: " + in.readLine());
 
             } catch (IOException e) {
 
@@ -77,40 +79,40 @@ public class MailSender {
             try {
 
                 //Shake hand
-                logger.info("send ehlo for: " + EHLO + ehlo);
+                System.out.println("[SENDER] start sending mail from " + from.getEmail());
+                System.out.println("[SENDER] send ehlo for: " + EHLO + ehlo);
                 write(EHLO + ehlo);
                 StringBuilder EHLObuilder = new StringBuilder();
                 int c;
                 while((c = in.read()) != 13)
                     EHLObuilder.append((char)c);
-                logger.info("[SERVER] " + EHLObuilder.toString());
+                System.out.println("[SERVER] " + EHLObuilder.toString());
 
                 //Send from
-                logger.info("sending from");
+                System.out.println("[SENDER] sending from");
                 write(MAIL_FROM + from.getEmail());
                 read();
 
                 //Send to
-                logger.info("sending to");
+                System.out.println("[SENDER] sending to");
                 for(EmailAddress toAddress : to) {
                     write(RCPT_TO + toAddress.getEmail());
                     read();
                 }
 
                 //Notify server that we send message
-                logger.info("starting sending Model");
                 write(DATA);
                 read(); //He says ok yo, go ahead
 
                 //Send headers
-                logger.info("sending headers");
+                System.out.println("[SENDER] sending headers");
                 write("From: " + from.getEmail());
                 write("To: " + implode(to));
                 write("Subject: " + subject);
                 write("");
 
                 //Send message
-                logger.info("sending message");
+                System.out.println("[SENDER] sending message");
                 write(message);
                 write("."); //End of message
 
@@ -118,7 +120,9 @@ public class MailSender {
                 read();
 
                 write("QUIT");
+                read();
                 connection.close();
+                System.out.println("[SENDER] Mail from " + from.getEmail() + " sent!");
                 return true;
 
             } catch (Exception e) {
@@ -151,7 +155,7 @@ public class MailSender {
         private void read() throws Exception {
 
             String response = in.readLine();
-            logger.info("[SERVER] " + response);
+            System.out.println("[SERVER] " + response);
         }
 
     }

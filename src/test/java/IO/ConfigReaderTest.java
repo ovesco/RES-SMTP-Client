@@ -15,12 +15,10 @@ public class ConfigReaderTest {
         ConfigReader reader = new ConfigReader(path);
         Config config       = reader.getConfig();
 
-        assertTrue(config.getBaseFrom().getEmail().equals("yolo@swag.com"));
         assertTrue(config.isMock());
         assertTrue(config.getEhlo().equals("swag.com"));
         assertTrue(config.getGroups().equals(3));
 
-        assertEquals(config.getSenders().size(), 3);
         assertEquals(config.getVictims().size(), 10);
         assertEquals(config.getContents().size(), 3);
     }

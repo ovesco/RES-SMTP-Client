@@ -29,11 +29,19 @@ public class CampaignMaker {
     private void createCampaign() {
 
         int amountOfVictims             = random(2, config.getVictims().size());
-        EmailAddress sender             = getRandomSender();
+        if(amountOfVictims == config.getVictims().size())
+            amountOfVictims--;
+
         ArrayList<EmailAddress> victims = getVictims(amountOfVictims);
+        EmailAddress sender             = getRandomSender(victims);
         EmailContent content            = getRandomEmailContent();
 
-        campaigns.add(new Campaign(sender, victims, content.getSubject(), content.getContent()));
+        Campaign campaign = new Campaign(sender, victims, content.getSubject(), content.getContent());
+        campaigns.add(campaign);
+        System.out.println("Created new " + campaign);
+        System.out.println("-------------------");
+
+
     }
 
     private ArrayList<EmailAddress> getVictims(int amount) {
@@ -46,7 +54,6 @@ public class CampaignMaker {
         while(victims.size() != amount) {
 
             EmailAddress address = config.getVictims().get(random(0, config.getVictims().size() - 1));
-
             if(!victims.contains(address))
                 victims.add(address);
         }
@@ -59,9 +66,15 @@ public class CampaignMaker {
         return config.getContents().get(random(0, config.getContents().size()-1));
     }
 
-    private EmailAddress getRandomSender() {
+    private EmailAddress getRandomSender(ArrayList<EmailAddress> victims) {
 
-        return config.getSenders().get(random(0, config.getSenders().size()-1));
+        ArrayList<EmailAddress> possibleSenders = new ArrayList<EmailAddress>();
+
+        for(EmailAddress address : config.getVictims())
+            if(!victims.contains(address))
+                possibleSenders.add(address);
+
+        return possibleSenders.get(random(0, possibleSenders.size()-1));
     }
 
     private int random(int min, int max) {

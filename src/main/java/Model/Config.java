@@ -7,7 +7,6 @@ public class Config {
     private final static String BASE_EHLO       = "smtp_res.com";
 
     private ArrayList<EmailAddress> victims     = new ArrayList<EmailAddress>();
-    private ArrayList<EmailAddress> senders     = new ArrayList<EmailAddress>();
     private ArrayList<EmailContent> contents    = new ArrayList<EmailContent>();
 
     private Integer groups          = 1;
@@ -36,14 +35,6 @@ public class Config {
 
     public void setContents(ArrayList<EmailContent> contents) {
         this.contents = contents;
-    }
-
-    public ArrayList<EmailAddress> getSenders() {
-        return senders;
-    }
-
-    public void setSenders(ArrayList<EmailAddress> senders) {
-        this.senders = senders;
     }
 
     public ArrayList<EmailAddress> getVictims() {

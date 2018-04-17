@@ -4,7 +4,6 @@ import Data.ConfigReader;
 import IO.MailSender;
 import Model.Campaign;
 import Model.Config;
-import Model.EmailAddress;
 
 import java.util.Scanner;
 
@@ -21,8 +20,9 @@ public class RES_SMTP {
         CampaignMaker maker         = new CampaignMaker(config);
         MailSender sender           = new MailSender(config);
 
-        for(Campaign campaign : maker.getCampaigns())
-            for (EmailAddress to : campaign.getTo())
-                sender.sendMail(campaign.getFrom(), to, campaign.getSubject(), campaign.getContent());
+        for(Campaign campaign : maker.getCampaigns()) {
+            System.out.println("\n\nLaunching " + campaign);
+            sender.sendMail(campaign.getFrom(), campaign.getTo(), campaign.getSubject(), campaign.getContent());
+        }
     }
 }

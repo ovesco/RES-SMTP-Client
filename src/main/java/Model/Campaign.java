@@ -5,8 +5,6 @@ import java.util.logging.Logger;
 
 public class Campaign {
 
-    Logger logger   = Logger.getLogger(Campaign.class.getName());
-
     private EmailAddress from;
     private List<EmailAddress> to;
     private String subject;
@@ -35,5 +33,10 @@ public class Campaign {
 
     public String getContent() {
         return content;
+    }
+
+    public String toString() {
+
+        return "Campaign from " + from.getEmail() + ", subject: " + subject + ", recipients: " + to.size();
     }
 }

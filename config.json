@@ -18,11 +18,11 @@
   "contents": [
     {
       "subject": "T'es une victime",
-      "content": "Yo %s, t'as été victimisey par l'homme le plus styley"
+      "content": "Yo, t'as été victimisey par l'homme le plus styley"
     },
     {
       "subject": "J'ai des thunes",
-      "content": "Bonsoir %s, je suis un prince nigérien et je vous lègue toute ma fortune parce que votre adresse est %s"
+      "content": "Bonsoir, je suis un prince nigérien et je vous lègue toute ma fortune"
     },
     {
       "subject": "Hakuna matata",
@@ -32,9 +32,8 @@
 
   "groups": 3,
   "ehlo": "swag.com",
-  "baseFrom": "yolo@swag.com",
   "mockServer": {
     "server": "localhost",
-    "port": 8632
+    "port": 2525
   }
 }
