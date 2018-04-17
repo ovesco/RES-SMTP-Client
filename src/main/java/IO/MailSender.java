@@ -106,6 +106,7 @@ public class MailSender {
 
                 //Send headers
                 System.out.println("[SENDER] sending headers");
+                write("Content-Type: text/plain; charset=utf-8");
                 write("From: " + from.getEmail());
                 write("To: " + implode(to));
                 write("Subject: " + subject);
